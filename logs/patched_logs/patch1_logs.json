@@ -1,8 +1,34 @@
-[
-    {"type": "deposit", "amount": 1000, "timestamp": "2025-03-30T10:15:23Z", "user": "customer1", "balance_after": 1000},
-    {"type": "withdraw", "amount": 200, "timestamp": "2025-03-30T11:20:45Z", "user": "customer1", "balance_after": 800},
-    {"type": "deposit", "amount": 350, "timestamp": "2025-03-30T14:05:12Z", "user": "customer1", "balance_after": 1150},
-    {"type": "withdraw", "amount": 1500, "timestamp": "2025-03-30T16:30:22Z", "user": "customer1", "balance_after": 1150, "error": "insufficient_funds"},
-    {"type": "withdraw", "amount": 150, "timestamp": "2025-03-30T18:22:10Z", "user": "customer1", "balance_after": 1000},
-    {"type": "deposit", "amount": -50, "timestamp": "2025-03-31T09:15:43Z", "user": "customer1", "balance_after": 1000, "error": "negative_amount"}
-  ]
+{
+  "successful_operations": [
+    {
+      "timestamp": "2023-11-15T10:05:00Z",
+      "operation": "deposit",
+      "amount": 100.0,
+      "new_balance": 200.0,
+      "span_id": "a1b2c3d4"
+    },
+    {
+      "timestamp": "2023-11-15T10:06:00Z",
+      "operation": "withdraw",
+      "amount": 50.0,
+      "new_balance": 150.0,
+      "span_id": "e5f6g7h8"
+    }
+  ],
+  "tracing_output": {
+    "spans": [
+      {
+        "name": "deposit",
+        "context": {"trace_id": "abc123", "span_id": "a1b2c3d4"},
+        "attributes": {},
+        "status": "OK"
+      },
+      {
+        "name": "withdraw",
+        "context": {"trace_id": "def456", "span_id": "e5f6g7h8"},
+        "attributes": {},
+        "status": "OK"
+      }
+    ]
+  }
+}
