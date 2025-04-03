@@ -1,24 +1,4 @@
-{
-  "errors": [
-    {
-      "timestamp": "2023-11-15T10:00:00Z",
-      "error_type": "AttributeError",
-      "message": "'BankAccount' object has no attribute 'transaction_history'",
-      "operation": "get_transaction_history",
-      "stack_trace": "Traceback (most recent call last):\n  File \"code.py\", line 35, in get_transaction_history\n    return self.transaction_history\nAttributeError: 'BankAccount' object has no attribute 'transaction_history'"
-    },
-    {
-      "timestamp": "2023-11-15T10:01:00Z",
-      "error_type": "AttributeError",
-      "message": "'BankAccount' object has no attribute 'transaction_history'",
-      "operation": "deposit",
-      "stack_trace": "Traceback (most recent call last):\n  File \"code.py\", line 15, in deposit\n    self.transaction_history.append((\"deposit\", amount))\nAttributeError: 'BankAccount' object has no attribute 'transaction_history'"
-    }
-  ],
-  "tracing_issues": [
-    {
-      "message": "Inconsistent span naming for transaction operations",
-      "suggestion": "Standardize span names and add attributes"
-    }
-  ]
-}
+[
+    {"type": "deposit", "amount": -200, "timestamp": "2025-03-29T17:30:15Z", "user": "customer3", "balance_after": 1500, "bug": "negative_deposit_accepted"},
+    {"type": "withdraw", "amount": -50, "timestamp": "2025-03-30T10:25:33Z", "user": "customer3", "balance_after": 1450, "bug": "negative_withdrawal_adds_funds"}
+]
