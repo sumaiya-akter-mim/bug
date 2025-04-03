@@ -1,9 +1,55 @@
-[
-    {"type": "deposit", "amount": 1500, "timestamp": "2025-03-30T09:10:20Z", "user": "customer2", "balance_after": 1500},
-    {"type": "deposit", "amount": 0, "timestamp": "2025-03-30T09:15:30Z", "user": "customer2", "balance_after": 1500},
-    {"type": "withdraw", "amount": 500, "timestamp": "2025-03-30T10:20:15Z", "user": "customer2", "balance_after": 1000},
-    {"type": "withdraw", "amount": 0, "timestamp": "2025-03-30T11:05:22Z", "user": "customer2", "balance_after": 1000},
-    {"type": "withdraw", "amount": -100, "timestamp": "2025-03-30T14:30:45Z", "user": "customer2", "balance_after": 1000, "error": "negative_amount"},
-    {"type": "deposit", "amount": 200, "timestamp": "2025-03-31T08:45:12Z", "user": "customer2", "balance_after": 1200},
-    {"type": "withdraw", "amount": 1300, "timestamp": "2025-03-31T10:55:33Z", "user": "customer2", "balance_after": 1200, "error": "insufficient_funds"}
-  ]
+{
+  "successful_operations": [
+    {
+      "timestamp": "2023-11-15T10:10:00Z",
+      "operation": "deposit",
+      "amount": 200.0,
+      "new_balance": 300.0,
+      "span_id": "i9j0k1l2",
+      "trace_attributes": {"amount": 200.0}
+    },
+    {
+      "timestamp": "2023-11-15T10:11:00Z",
+      "operation": "withdraw",
+      "amount": 100.0,
+      "new_balance": 200.0,
+      "span_id": "m3n4o5p6",
+      "trace_attributes": {"amount": 100.0, "insufficient_funds": false}
+    }
+  ],
+  "error_case": {
+    "timestamp": "2023-11-15T10:12:00Z",
+    "operation": "withdraw",
+    "amount": 500.0,
+    "error": "Insufficient funds",
+    "span_id": "q7r8s9t0",
+    "trace_attributes": {
+      "amount": 500.0,
+      "insufficient_funds": true,
+      "current_balance": 200.0
+    }
+  },
+  "tracing_output": {
+    "spans": [
+      {
+        "name": "deposit",
+        "context": {"trace_id": "ghi789", "span_id": "i9j0k1l2"},
+        "attributes": {"amount": 200.0},
+        "status": "OK"
+      },
+      {
+        "name": "withdraw",
+        "context": {"trace_id": "jkl012", "span_id": "m3n4o5p6"},
+        "attributes": {"amount": 100.0, "insufficient_funds": false},
+        "status": "OK"
+      },
+      {
+        "name": "withdraw",
+        "context": {"trace_id": "mno345", "span_id": "q7r8s9t0"},
+        "attributes": {"amount": 500.0, "insufficient_funds": true},
+        "status": "ERROR",
+        "error": "ValueError: Insufficient funds"
+      }
+    ]
+  }
+}
